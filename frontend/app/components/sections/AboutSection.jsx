@@ -14,6 +14,11 @@ export default function AboutSection({ about }) {
 
   if (!about) return null;
 
+  // ✅ SORT TIMELINE (old → new)
+  const sortedTimeline = [...(about.timeline || [])].sort((a, b) => {
+    return Number(a.year) - Number(b.year);
+  });
+
   return (
     <section
       id="about"
@@ -110,39 +115,22 @@ export default function AboutSection({ about }) {
 
               {/* Social */}
               <div className="flex gap-2 overflow-x-auto no-scrollbar">
-  {about.github && (
-    <a
-      href={about.github}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="btn-ghost text-xs px-3 py-1.5 whitespace-nowrap"
-    >
-      GitHub ↗
-    </a>
-  )}
-
-  {about.linkedin && (
-    <a
-      href={about.linkedin}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="btn-ghost text-xs px-3 py-1.5 whitespace-nowrap"
-    >
-      LinkedIn ↗
-    </a>
-  )}
-
-  {about.twitter && (
-    <a
-      href={about.twitter}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="btn-ghost text-xs px-3 py-1.5 whitespace-nowrap"
-    >
-      Twitter ↗
-    </a>
-  )}
-</div>
+                {about.github && (
+                  <a href={about.github} target="_blank" rel="noopener noreferrer" className="btn-ghost text-xs px-3 py-1.5 whitespace-nowrap">
+                    GitHub ↗
+                  </a>
+                )}
+                {about.linkedin && (
+                  <a href={about.linkedin} target="_blank" rel="noopener noreferrer" className="btn-ghost text-xs px-3 py-1.5 whitespace-nowrap">
+                    LinkedIn ↗
+                  </a>
+                )}
+                {about.twitter && (
+                  <a href={about.twitter} target="_blank" rel="noopener noreferrer" className="btn-ghost text-xs px-3 py-1.5 whitespace-nowrap">
+                    Twitter ↗
+                  </a>
+                )}
+              </div>
             </div>
           </motion.div>
 
@@ -160,7 +148,7 @@ export default function AboutSection({ about }) {
               <div className="absolute left-3 sm:left-4 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500/60 via-violet-500/40 to-transparent" />
 
               <div className="space-y-4 sm:space-y-6">
-                {(about.timeline || []).map((item, i) => (
+                {sortedTimeline.map((item, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, x: 20 }}
