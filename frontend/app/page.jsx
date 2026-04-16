@@ -1,23 +1,19 @@
-"use client"; import { useEffect, useState } from "react"; 
-import { aboutAPI, skillsAPI, projectsAPI, certificatesAPI } from "../lib/api"; 
-import Navbar from "./components/Navbar"; 
-import HeroSection from "./components/sections/HeroSection"; 
-import AboutSection from "./components/sections/AboutSection"; 
-import SkillsSection from "./components/sections/SkillsSection"; 
-import ProjectsSection from "./components/sections/ProjectsSection"; 
-import CertificatesSection from "./components/sections/CertificatesSection"; 
-import ContactSection from "./components/sections/ContactSection"; 
-import Footer from "./components/Footer"; 
-import Loader from './components/Loader'; 
+"use client";
+import { useEffect, useState } from "react";
+import { aboutAPI, skillsAPI, projectsAPI, certificatesAPI } from "../lib/api";
+import Navbar from "./components/Navbar";
+import HeroSection from "./components/sections/HeroSection";
+import AboutSection from "./components/sections/AboutSection";
+import SkillsSection from "./components/sections/SkillsSection";
+import ProjectsSection from "./components/sections/ProjectsSection";
+import CertificatesSection from "./components/sections/CertificatesSection";
+import ContactSection from "./components/sections/ContactSection";
+import Footer from "./components/Footer";
+import Loader from './components/Loader';
 import { AnimatePresence } from 'framer-motion';
 
-/**
- * Responsive Skeleton Block
- */
 function SkeletonBlock({ className }) {
-  return (
-    <div className={`skeleton rounded-xl animate-pulse bg-white/5 ${className}`} />
-  );
+  return <div className={`skeleton rounded-xl ${className}`} />;
 }
 
 export default function HomePage() {
@@ -27,8 +23,8 @@ export default function HomePage() {
     projects: [],
     certificates: [],
   });
-
   const [loading, setLoading] = useState(true);
+  const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
     const fetchAll = async () => {
@@ -64,20 +60,20 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="min-h-screen w-full overflow-x-hidden overflow-y-auto">
+    <main className="min-h-screen w-full overflow-x-hidden">
       <Navbar />
 
       {loading ? (
-        <div className="min-h-[80vh] flex items-center justify-center px-6 md:px-12">
-          <div className="space-y-6 w-full max-w-sm md:max-w-xl lg:max-w-2xl">
-            <SkeletonBlock className="h-8 w-32 md:w-48 mx-auto" />
-            <SkeletonBlock className="h-24 md:h-32 w-full" />
-            <SkeletonBlock className="h-6 w-4/5 md:w-3/4 mx-auto" />
-            <SkeletonBlock className="h-12 w-40 md:w-56 mx-auto" />
+        <div className="min-h-screen flex items-center justify-center px-4">
+          <div className="space-y-4 w-full max-w-md">
+            <SkeletonBlock className="h-8 w-40 mx-auto" />
+            <SkeletonBlock className="h-16 w-full" />
+            <SkeletonBlock className="h-6 w-3/4 mx-auto" />
+            <SkeletonBlock className="h-12 w-48 mx-auto" />
           </div>
         </div>
       ) : (
-        <div className="flex flex-col w-full">
+        <>
           <HeroSection about={data.about} />
           <AboutSection about={data.about} />
           <SkillsSection skills={data.skills} />
@@ -85,7 +81,7 @@ export default function HomePage() {
           <CertificatesSection certificates={data.certificates} />
           <ContactSection about={data.about} />
           <Footer about={data.about} />
-        </div>
+        </>
       )}
     </main>
   );
