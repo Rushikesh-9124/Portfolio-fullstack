@@ -113,7 +113,7 @@ export default function HeroSection({ about }) {
         >
           {[
             { value: about?.yearsExperience || '5+', label: 'Years Exp.' },
-            { value: about?.projectsCompleted +  || '30', label: '+ Projects' },
+            { value: about?.projectsCompleted   || '30', label: '+ Projects' },
             { value: '100%', label: 'Dedication' },
           ].map((stat, i) => (
             <div key={i} className="glass-card p-4 text-center">
