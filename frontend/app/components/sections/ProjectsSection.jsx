@@ -12,7 +12,7 @@ function ProjectCard({ project, index, inView }) {
     <motion.div
       style={{
         position: 'sticky',
-        top: '120px', // ✅ adjust based on navbar height
+        top: '120px',
         zIndex: index + 1,
         marginTop: index === 0 ? '0px' : '80px',
       }}
@@ -115,10 +115,15 @@ export default function ProjectsSection({ projects = [] }) {
       ? projects
       : projects.filter((p) => p.category === activeFilter);
 
+  // ✅ SORT: Featured projects first
+  const sorted = [...filtered].sort((a, b) => {
+    return (b.featured === true) - (a.featured === true);
+  });
+
   return (
     <section
       id="projects"
-      className="relative py-16 sm:py-20 md:py-24 px-4" // ❌ removed overflow-hidden
+      className="relative py-16 sm:py-20 md:py-24 px-4"
       ref={ref}
     >
       <div className="container-custom max-w-6xl mx-auto">
@@ -156,10 +161,10 @@ export default function ProjectsSection({ projects = [] }) {
           <div
             className="flex flex-col relative"
             style={{
-              paddingBottom: `${(filtered.length - 1) * 5}px`,
+              paddingBottom: `${(sorted.length - 1) * 5}px`,
             }}
           >
-            {filtered.map((project, i) => (
+            {sorted.map((project, i) => (
               <ProjectCard
                 key={project._id || i}
                 project={project}
@@ -171,7 +176,7 @@ export default function ProjectsSection({ projects = [] }) {
         </AnimatePresence>
 
         {/* Empty */}
-        {filtered.length === 0 && (
+        {sorted.length === 0 && (
           <div className="text-center py-16 text-gray-500">
             No projects found.
           </div>
