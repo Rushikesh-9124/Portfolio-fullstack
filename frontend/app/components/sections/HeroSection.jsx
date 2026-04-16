@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 
 export default function HeroSection({ about }) {
-  const name = about?.name || 'Your Name';
+  const name = about?.name || 'Rushikesh Reddy';
   const scrollTo = (href) => {
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -79,7 +79,7 @@ export default function HeroSection({ about }) {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-slate-400 max-w-2xl mx-auto mb-12 text-lg leading-relaxed font-body"
         >
-          {about?.bio || 'Building beautiful, high-performance applications with modern technologies. Passionate about AI, clean code, and exceptional user experiences.'}
+          {about?.bio || 'Computer Science undergraduate specializing in full-stack development with JavaScript and Next.js. My portfolio includes 10+ full-stack applications and a strong, demonstrated ability in coding and problem-solving, making me an interview-ready and independent contributor.'}
         </motion.p>
 
         {/* CTA Buttons */}
