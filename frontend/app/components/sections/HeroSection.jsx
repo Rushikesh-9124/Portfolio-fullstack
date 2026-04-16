@@ -112,8 +112,8 @@ export default function HeroSection({ about }) {
           className="mt-20 grid grid-cols-3 gap-6 max-w-lg mx-auto"
         >
           {[
-            { value: about?.yearsExperience || '5+', label: 'Years Exp.' },
-            { value: about?.projectsCompleted   || '30', label: '+ Projects' },
+            { value: about?.yearsExperience ?? '5+', label: 'Years Exp.' },
+            { value: about?.projectsCompleted ?? '30', label: '+ Projects' },
             { value: '100%', label: 'Dedication' },
           ].map((stat, i) => (
             <div key={i} className="glass-card p-4 text-center">
