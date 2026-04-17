@@ -31,13 +31,13 @@ export default function LoginPage() {
   };
 
 
-  // useEffect(()=>{
-  //   const token = localStorage.getItem("token");
-  //   if(token.length != 0){
-  //     redirect('/dashboard')
-  //   }
+  useEffect(() => {
+  const token = localStorage.getItem("token");
 
-  // }, [])
+  if (token) {
+    router.push('/dashboard');
+  }
+}, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
