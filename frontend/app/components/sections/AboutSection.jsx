@@ -14,8 +14,13 @@ export default function AboutSection({ about }) {
 
   if (!about) return null;
 
-  // ✅ SORT TIMELINE (old → new)
-  const sortedTimeline = [...(about.timeline || [])].sort((a, b) => {
+  // ✅ FIX: FORCE ARRAY (NO CRASH EVER)
+  const timelineArray = Array.isArray(about.timeline)
+    ? about.timeline
+    : [];
+
+  // ✅ SAFE SORT
+  const sortedTimeline = timelineArray.sort((a, b) => {
     return Number(a.year) - Number(b.year);
   });
 
