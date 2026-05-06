@@ -30,7 +30,7 @@ const authLimiter = rateLimit({
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'https://your-frontend-domain.vercel.app'
+    'https://portfolio-fullstack-rushikesh.vercel.app'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
